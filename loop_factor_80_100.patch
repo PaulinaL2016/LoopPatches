@@ -1,0 +1,33 @@
+diff --git a/Loop/Models/GlucoseBasedApplicationFactorStrategy.swift b/Loop/Models/GlucoseBasedApplicationFactorStrategy.swift
+index 41caa3d7..cc95cc6e 100644
+--- a/Loop/Models/GlucoseBasedApplicationFactorStrategy.swift
++++ b/Loop/Models/GlucoseBasedApplicationFactorStrategy.swift
+@@ -12,12 +12,12 @@ import LoopKit
+ import LoopCore
+ 
+ struct GlucoseBasedApplicationFactorStrategy: ApplicationFactorStrategy {
+-    static let minPartialApplicationFactor = 0.20 // min fraction of correction when glucose > minGlucoseSlidingScale
+-    static let maxPartialApplicationFactor = 0.80 // max fraction of correction when glucose > maxGlucoseSlidingScale
++    static let minPartialApplicationFactor = 0.80 // min fraction of correction when glucose > minGlucoseSlidingScale
++    static let maxPartialApplicationFactor = 1.00 // max fraction of correction when glucose > maxGlucoseSlidingScale
+     // set minGlucoseSlidingScale based on user setting for correction range
+     // use mg/dL for calculations
+     static let minGlucoseDeltaSlidingScale = 10.0 // mg/dL
+-    static let maxGlucoseSlidingScale = 200.0 // mg/dL
++    static let maxGlucoseSlidingScale = 180.0 // mg/dL
+ 
+     func calculateDosingFactor(
+         for glucose: HKQuantity,
+diff --git a/Loop/Models/LoopConstants.swift b/Loop/Models/LoopConstants.swift
+index fb69c827..f293c769 100644
+--- a/Loop/Models/LoopConstants.swift
++++ b/Loop/Models/LoopConstants.swift
+@@ -50,7 +50,7 @@ enum LoopConstants {
+     static let retrospectiveCorrectionEnabled = true
+     
+     // Percentage of recommended dose to apply as bolus when using automatic bolus dosing strategy
+-    static let bolusPartialApplicationFactor = 0.4
++    static let bolusPartialApplicationFactor = 0.8
+ 
+     /// Loop completion aging category limits
+     static let completionFreshLimit = TimeInterval(minutes: 6)

@@ -1,0 +1,35 @@
+diff --git a/Loop/Models/GlucoseBasedApplicationFactorStrategy.swift b/Loop/Models/GlucoseBasedApplicationFactorStrategy.swift
+index 41caa3d7..e0c44281 100644
+--- a/Loop/Models/GlucoseBasedApplicationFactorStrategy.swift
++++ b/Loop/Models/GlucoseBasedApplicationFactorStrategy.swift
+@@ -12,7 +12,7 @@ import LoopKit
+ import LoopCore
+ 
+ struct GlucoseBasedApplicationFactorStrategy: ApplicationFactorStrategy {
+-    static let minPartialApplicationFactor = 0.20 // min fraction of correction when glucose > minGlucoseSlidingScale
++    static let minPartialApplicationFactor = 0.40 // min fraction of correction when glucose > minGlucoseSlidingScale
+     static let maxPartialApplicationFactor = 0.80 // max fraction of correction when glucose > maxGlucoseSlidingScale
+     // set minGlucoseSlidingScale based on user setting for correction range
+     // use mg/dL for calculations
+@@ -30,7 +30,7 @@ struct GlucoseBasedApplicationFactorStrategy: ApplicationFactorStrategy {
+         let lowerBoundTarget = correctionRange.lowerBound.doubleValue(for: .milligramsPerDeciliter)
+ 
+         // Calculate minimum glucose sliding scale and scaling fraction
+-        let minGlucoseSlidingScale = GlucoseBasedApplicationFactorStrategy.minGlucoseDeltaSlidingScale + lowerBoundTarget
++        let minGlucoseSlidingScale = 70.0 // GlucoseBasedApplicationFactorStrategy.minGlucoseDeltaSlidingScale + lowerBoundTarget
+         let scalingFraction = (GlucoseBasedApplicationFactorStrategy.maxPartialApplicationFactor - GlucoseBasedApplicationFactorStrategy.minPartialApplicationFactor) / (GlucoseBasedApplicationFactorStrategy.maxGlucoseSlidingScale - minGlucoseSlidingScale)
+         let scalingGlucose = max(currentGlucose - minGlucoseSlidingScale, 0.0)
+ 
+diff --git a/Loop/Models/LoopConstants.swift b/Loop/Models/LoopConstants.swift
+index fb69c827..f293c769 100644
+--- a/Loop/Models/LoopConstants.swift
++++ b/Loop/Models/LoopConstants.swift
+@@ -50,7 +50,7 @@ enum LoopConstants {
+     static let retrospectiveCorrectionEnabled = true
+     
+     // Percentage of recommended dose to apply as bolus when using automatic bolus dosing strategy
+-    static let bolusPartialApplicationFactor = 0.4
++    static let bolusPartialApplicationFactor = 0.8
+ 
+     /// Loop completion aging category limits
+     static let completionFreshLimit = TimeInterval(minutes: 6)

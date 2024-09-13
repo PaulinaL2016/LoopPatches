@@ -1,13 +1,14 @@
-Index: LoopWorkspace/NightscoutService/NightscoutServiceKit/OTPManager.swift
-===================================================================
---- LoopWorkspace.orig/NightscoutService/NightscoutServiceKit/OTPManager.swift
-+++ LoopWorkspace/NightscoutService/NightscoutServiceKit/OTPManager.swift
+diff --git a/NightscoutServiceKit/OTPManager.swift b/NightscoutServiceKit/OTPManager.swift
+index 3d51b72..bc1cf81 100644
+--- a/NightscoutServiceKit/OTPManager.swift
++++ b/NightscoutServiceKit/OTPManager.swift
 @@ -77,7 +77,7 @@ public class OTPManager {
      let maxOTPsToAccept: Int
-     
+
      public static var defaultTokenPeriod: TimeInterval = 30
 -    public static var defaultMaxOTPsToAccept = 2
 +    public static var defaultMaxOTPsToAccept = 10
-     
-     public init(secretStore: OTPSecretStore = KeychainManager(), nowDateSource: @escaping () -> Date = {Date()}, tokenPeriod: TimeInterval = OTPManager.defaultTokenPeriod, maxOTPsToAccept: Int = OTPManager.defaultMaxOTPsToAccept) {
+
+     public init(secretStore: OTPSecretStore = KeychainManager(), nowDateSource: @escaping () -> Date = {Date()}, tokenPeriod: TimeInterval = OTPManager.default
+TokenPeriod, maxOTPsToAccept: Int = OTPManager.defaultMaxOTPsToAccept) {
          self.secretStore = secretStore
